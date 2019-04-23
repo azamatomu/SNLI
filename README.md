@@ -22,3 +22,11 @@ python infer.py `--encoder_type`
 This script shows an inference experiment for a given encoder_type.
 Given remise:     `A boy was outside and he was playing with friends`
 Given hypotheses: `[A boy was inside], [A boy has no friends], [It is dark]`
+
+##
+
+Works consulted in the process:
+
+https://github.com/facebookresearch/SentEval
+
+https://github.com/facebookresearch/InferSent/
