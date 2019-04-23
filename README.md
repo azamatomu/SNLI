@@ -13,11 +13,15 @@ python eval.py `--encoder_type` `--emb_file`
 `--encoder_type`: Baseline, LSTM, BiLSTM or MaxBiLSTM
 `--emb_file`:     Word Vectors
 
+Requires a packed encoder and classifier, name format `encoder_type_enc.pt` and `encoder_type.pt` respectively.
+
 This script runs evaluation on SNLI and SentEval sets for a given encoder type.
 ##
 python infer.py `--encoder_type`
 
 `--encoder_type`: Baseline, LSTM, BiLSTM or MaxBiLSTM
+
+Requires a packed encoder and classifier, name format `encoder_type_enc.pt` and `encoder_type.pt` respectively.
 
 This script shows an inference experiment for a given encoder_type.
 Given remise:     `A boy was outside and he was playing with friends`
