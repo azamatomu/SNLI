@@ -25,11 +25,12 @@ class EncoderLSTM(nn.Module):
         sent_l, id_sort = np.sort(sent_l)[::-1], np.argsort(-sent_l)
         sent = sent.index_select(1, id_sort)
         sent_packed = nn.utils.rnn.pack_padded_sequence(sent, sent_l.copy())
-        output, _ = self.enc(sent_packed)
+        output, _ = self.enc(sent_packed)[1][0].squeeze(0)
         id_unsort = np.argsort(id_sort)
         output = (output[0]).index_select(0, id_unsort)
         
         return output
+    
 class EncoderBiLSTM(nn.Module):
     def __init__(self, emb_size, enc_size, batch_size, embedding, pool_type=None):
         super(EncoderBiLSTM, self).__init__()
@@ -68,9 +69,6 @@ class Classifier(nn.Module):
         self.embedding = nn.Embedding.from_pretrained(embedding)
         self.clf = nn.Sequential(
                 nn.Linear(self.input_size, self.hidden_size), #Input layer
-                #nn.Tanh(), #Nonlinearity
-                #nn.Linear(self.hidden_size, self.hidden_size), #Hidden layer
-                #nn.Tanh(), #Nonlinearity
                 nn.Linear(self.hidden_size, self.classes), #Softmax layer
                 )
 
