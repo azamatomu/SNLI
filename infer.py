@@ -2,6 +2,7 @@ from model import EncoderBaseline, EncoderLSTM, EncoderBiLSTM, Classifier
 import torch
 import argparse
 from nltk.tokenize import word_tokenize
+
 from data import load_data
 
 if __name__ == "__main__":
@@ -42,11 +43,11 @@ if __name__ == "__main__":
                      hidden_size = 512, 
                      encoder = encoder, 
                      embedding = text.vocab.vectors)
+    
     if args.encoder_type == 'Baseline':
         clf.load_state_dict(torch.load('Baseline.pt',map_location=lambda storage, loc: storage))        
     if args.encoder_type == 'LSTM':
-        clf.load_state_dict(torch.load('LSTM.pt',map_location=lambda storage, loc: storage), 
-                            strict=False)        
+        clf.load_state_dict(torch.load('LSTM.pt',map_location=lambda storage, loc: storage))        
 
     labels = ['entailment', 'contradiction', 'neutral']
     hypotheses = ['A boy was inside', 'A boy has no friends', 'It is bright']

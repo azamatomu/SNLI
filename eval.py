@@ -152,6 +152,6 @@ if __name__ == "__main__":
     print(test_res)
     np.save("snli" + args.encoder_type, results)
     
-    
+    print('Finished evaluation.')
 
     
